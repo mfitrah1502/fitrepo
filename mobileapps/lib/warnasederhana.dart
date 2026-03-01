@@ -14,7 +14,7 @@ class MyStatelessApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Row, Column & Stack Stateless"),
-          backgroundColor: Colors.deepPurple,
+          backgroundColor: const Color.fromARGB(255, 153, 112, 225),
         ),
         body: Padding(
           padding: const EdgeInsets.all(20),
