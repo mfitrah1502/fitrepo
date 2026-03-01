@@ -1,24 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyStatelessApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  List<String> items = ["Item 1", "Item 2", "Item 3"];
-
-  void tambahItem() {
-    setState(() {
-      items.add("Item ${items.length + 1}");
-    });
-  }
+class MyStatelessApp extends StatelessWidget {
+  const MyStatelessApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,30 +13,35 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-<<<<<<< HEAD
           title: const Text("Row, Column & Stack Stateless"),
-          backgroundColor: const Color.fromARGB(255, 153, 112, 225),
-=======
-          title: const Text("Column + Tombol Tambah"),
-          centerTitle: true,
->>>>>>> 6b8f3dc8fdea069753bc202d612a83bad38656e5
+          backgroundColor: Colors.deepPurple, // DIUBAH (warna)
         ),
-        body: Center(
+        body: Padding(
+          padding: const EdgeInsets.all(20),
           child: Column(
-<<<<<<< HEAD
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Row
               const Text("1️⃣ Row"),
               const SizedBox(height: 10),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // DIUBAH
                 children: [
                   Container(
                     width: 80,
                     height: 50,
-                    color: Colors.red,
                     alignment: Alignment.center,
+                    decoration: BoxDecoration( // DIUBAH (rounded + shadow)
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: const [
+                        BoxShadow(
+                          blurRadius: 4,
+                          offset: Offset(2, 2),
+                          color: Colors.black26,
+                        ),
+                      ],
+                    ),
                     child: const Text(
                       "Merah",
                       style: TextStyle(color: Colors.white),
@@ -58,8 +50,18 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     width: 80,
                     height: 50,
-                    color: Colors.green,
                     alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: const [
+                        BoxShadow(
+                          blurRadius: 4,
+                          offset: Offset(2, 2),
+                          color: Colors.black26,
+                        ),
+                      ],
+                    ),
                     child: const Text(
                       "Hijau",
                       style: TextStyle(color: Colors.white),
@@ -68,31 +70,27 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     width: 80,
                     height: 50,
-=======
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // List Item
-              ...items.map(
-                (item) => Container(
-                  margin: const EdgeInsets.symmetric(vertical: 5),
-                  padding: const EdgeInsets.all(15),
-                  width: 200,
-                  decoration: BoxDecoration(
->>>>>>> 6b8f3dc8fdea069753bc202d612a83bad38656e5
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(10),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: const [
+                        BoxShadow(
+                          blurRadius: 4,
+                          offset: Offset(2, 2),
+                          color: Colors.black26,
+                        ),
+                      ],
+                    ),
+                    child: const Text(
+                      "Biru",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
-                  child: Text(
-                    item,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ),
+                ],
               ),
-
               const SizedBox(height: 20),
 
-<<<<<<< HEAD
               // Column
               const Text("2️⃣ Column"),
               const SizedBox(height: 10),
@@ -102,33 +100,42 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     width: 100,
                     height: 50,
-                    color: Colors.yellow,
+                    color: Colors.yellow.shade700, // DIUBAH (shade)
                     alignment: Alignment.center,
                     child: const Text(
                       "Kuning",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold, // DIUBAH
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
                   Container(
                     width: 100,
                     height: 50,
-                    color: Colors.orange,
+                    color: Colors.orange.shade700, // DIUBAH
                     alignment: Alignment.center,
                     child: const Text(
                       "Oranye",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
                   Container(
                     width: 100,
                     height: 50,
-                    color: Colors.purple,
+                    color: Colors.purple.shade700, // DIUBAH
                     alignment: Alignment.center,
                     child: const Text(
                       "Ungu",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -151,7 +158,8 @@ class _MyAppState extends State<MyApp> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                   // TAMBAHAN BARU
+
+                  // TAMBAHAN BARU
                   Positioned(
                     bottom: 4,
                     right: 4,
@@ -169,12 +177,6 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ],
-=======
-              // Tombol Tambah
-              ElevatedButton(
-                onPressed: tambahItem,
-                child: const Text("Tambah Item"),
->>>>>>> 6b8f3dc8fdea069753bc202d612a83bad38656e5
               ),
             ],
           ),
@@ -182,9 +184,4 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
-<<<<<<< HEAD
-
 }
-=======
-}
->>>>>>> 6b8f3dc8fdea069753bc202d612a83bad38656e5
