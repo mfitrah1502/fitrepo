@@ -12,9 +12,9 @@
 </details>
 </p>
 <h2 align="center">Team</h2>
-<p align="center">Herawati Putri Awaliyah<br>
-  Ajeng Elsa Fitriyani<br>
-  Nadzwa Miqdaruhul Alfa<br>
-  <b>Muhammad Fitrah Abdul Rahman Saleh</b>
+<p align="center">Herawati Putri Awaliyah E41241945<br>
+  Ajeng Elsa Fitriyani E41242041<br>
+  Nadzwa Miqdaruhul Alfa E41242060<br>
+  <b>Muhammad Fitrah Abdul Rahman Saleh E41242101</b>
 </p>
 <h3 align="center">All Rights Reserved 2026</h3>
