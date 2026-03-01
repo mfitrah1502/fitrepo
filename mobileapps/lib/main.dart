@@ -19,9 +19,19 @@ class _MyAppState extends State<MyApp> {
   Color rowBlue = Colors.blue;
 
   // State warna kotak untuk Column
-  Color colRed = Colors.red;
-  Color colYellow = Colors.yellow;
-  Color colBlue = Colors.blue;
+List<Color> columnItems = [
+  Colors.red,
+  Colors.yellow,
+  Colors.blue,
+];
+
+void tambahItemColumn() {
+  setState(() {
+    columnItems.add(
+      Colors.primaries[columnItems.length % Colors.primaries.length],
+    );
+  });
+}
 
   // State warna kotak untuk Stack
   Color stackRed = Colors.red;
@@ -96,37 +106,28 @@ class _MyAppState extends State<MyApp> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
+
                 Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          colRed = toggleColor(colRed);
-                        });
-                      },
-                      child: Container(width: 60, height: 60, color: colRed),
-                    ),
-                    const SizedBox(height: 10),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          colYellow = toggleColor(colYellow);
-                        });
-                      },
-                      child: Container(width: 60, height: 60, color: colYellow),
-                    ),
-                    const SizedBox(height: 10),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          colBlue = toggleColor(colBlue);
-                        });
-                      },
-                      child: Container(width: 60, height: 60, color: colBlue),
-                    ),
-                  ],
+                  children: columnItems.map((color) {
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      width: 60,
+                      height: 60,
+                      color: color,
+                    );
+                  }).toList(),
                 ),
+
+                const SizedBox(height: 15),
+
+                Center(
+                  child: ElevatedButton(
+                    onPressed: tambahItemColumn,
+                    child: const Text("Tambah Item"),
+                  ),
+                ),
+
                 const SizedBox(height: 30),
 
                 // 3️⃣ STACK
