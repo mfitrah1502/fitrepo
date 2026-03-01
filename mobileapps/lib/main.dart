@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.teal,
-          title: const Text("Row, Column & Stack Demo"),
+          title: const Text("Row, Column & Stack"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
