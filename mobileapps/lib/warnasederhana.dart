@@ -14,18 +14,18 @@ class MyStatelessApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Row, Column & Stack Stateless"),
-          backgroundColor: Colors.teal,
+          backgroundColor: Colors.deepPurple,
         ),
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Row
               const Text("1️⃣ Row"),
               const SizedBox(height: 10),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
                     width: 80,
@@ -119,6 +119,23 @@ class MyStatelessApp extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                   // TAMBAHAN BARU
+                  Positioned(
+                    bottom: 4,
+                    right: 4,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 2),
+                      color: Colors.white,
+                      child: const Text(
+                        "NEW",
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],
@@ -127,4 +144,5 @@ class MyStatelessApp extends StatelessWidget {
       ),
     );
   }
+
 }
