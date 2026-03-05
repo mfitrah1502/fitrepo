@@ -1,0 +1,73 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+
+class AuthController extends Controller
+{
+    // Menampilkan form login
+    public function showLoginForm()
+    {
+        return view('login'); // resources/views/login.blade.php
+    }
+
+    // Memproses login
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('dashboard');
+        }
+
+        return back()->with('error', 'Username atau password salah!');
+    }
+
+    // Menampilkan form register
+    public function showRegisterForm()
+    {
+        return view('register'); // resources/views/register.blade.php
+    }
+
+    // Memproses register
+    public function register(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|unique:users',
+        'username' => 'required|string|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+        'email_verified_at' => now(),
+    'remember_token' => Str::random(60),
+    ]);
+
+    $user = User::create([
+        'name' => $request->name,                   // wajib
+        'email' => $request->email,
+        'username' => $request->username,
+        'password' => Hash::make($request->password),
+        'email_verified_at' => now(),
+        'remember_token' => Str::random(60),
+    ]);
+
+    return redirect()->route('login')->with('success', 'Akun berhasil dibuat. Silahkan login!');
+}
+
+    // Logout
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
+    }
+}
