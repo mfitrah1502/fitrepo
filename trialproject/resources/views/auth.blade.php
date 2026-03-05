@@ -143,6 +143,9 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        <p class="text-end mt-1 mb-3">
+                            <a href="{{ route('reset.password') }}" class="text-decoration-none">Lupa Password?</a>
+                        </p>
 
                         <button type="submit" class="btn-custom">
                             Login
@@ -171,7 +174,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('register.process') }}" method="POST">
+                    <form id="registerForm" action="{{ route('register.process') }}" method="POST">
                         @csrf
                         <div id="registerAlert"></div>
 
@@ -290,29 +293,29 @@
 
         if (registerForm) {
             registerForm.addEventListener('submit', function (e) {
-                e.preventDefault(); // hentikan submit default dulu
-
-                const inputs = registerForm.querySelectorAll('input');
-                let emptyFields = false;
+                const username = registerForm.querySelector('input[name="username"]').value.trim();
+                const email = registerForm.querySelector('input[name="email"]').value.trim();
+                const password = registerForm.querySelector('input[name="password"]').value.trim();
+                const passwordConfirm = registerForm.querySelector('input[name="password_confirmation"]').value.trim();
 
                 clearRegisterAlert();
 
-                inputs.forEach(input => {
-                    if (input.value.trim() === '') {
-                        emptyFields = true;
-                    }
-                });
-
-                if (emptyFields) {
+                if (!username || !email || !password || !passwordConfirm) {
+                    e.preventDefault();
                     registerAlert.innerHTML = `
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Peringatan!</strong> Semua kolom wajib diisi.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            `;
-                } else {
-                    // semua kolom terisi → submit manual & kembalikan slide ke login
-                    registerForm.submit();
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Peringatan!</strong> Semua kolom wajib diisi.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `;
+                } else if (password !== passwordConfirm) {
+                    e.preventDefault();
+                    registerAlert.innerHTML = `
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Peringatan!</strong> Password dan konfirmasi password tidak cocok.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `;
                 }
             });
 

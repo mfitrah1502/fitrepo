@@ -88,19 +88,18 @@
 
             <form action="{{ route('login.process') }}" method="POST">
                 @csrf
-                <div id="loginAlert"></div>
 
                 <div class="mb-3">
-                    <label>Username</label>
-                    <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
-                        value="{{ old('username') }}">
+                    <label class="fw-bold">Username</label>
+                    <input type="text" name="username" value="{{ old('username') }}"
+                        class="form-control @error('username') is-invalid @enderror">
                     @error('username')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label>Password</label>
+                    <label class="fw-bold">Password</label>
                     <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
                     @error('password')
                         <div class="invalid-feedback">{{ $message }}</div>

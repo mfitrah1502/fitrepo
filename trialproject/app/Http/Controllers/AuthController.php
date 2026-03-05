@@ -13,7 +13,7 @@ class AuthController extends Controller
     // Menampilkan form login
     public function showLoginForm()
     {
-        return view('login'); // resources/views/login.blade.php
+        return view('auth'); // resources/views/login.blade.php
     }
 
     // Memproses login
@@ -35,7 +35,7 @@ class AuthController extends Controller
     // Menampilkan form register
     public function showRegisterForm()
     {
-        return view('register'); // resources/views/register.blade.php
+        return view('auth'); // resources/views/register.blade.php
     }
 
     // Memproses register
@@ -59,7 +59,7 @@ class AuthController extends Controller
         'remember_token' => Str::random(60),
     ]);
 
-    return redirect()->route('login')->with('success', 'Akun berhasil dibuat. Silahkan login!');
+    return redirect()->route('auth')->with('success', 'Akun berhasil dibuat. Silahkan login!');
 }
 
     // Logout
@@ -68,6 +68,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login');
+        return redirect()->route('auth');
     }
 }
